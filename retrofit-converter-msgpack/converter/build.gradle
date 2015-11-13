@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion versionCompileSdk
+    buildToolsVersion versionBuildTools
+
+    defaultConfig {
+
+        minSdkVersion versionMinSdk
+        targetSdkVersion versionTargetSdk
+
+        versionCode versionCODE
+        versionName versionNAME
+    }
+
+    buildTypes {
+
+        release {
+
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+
+        main {
+
+            manifest.srcFile 'manifest/AndroidManifest.xml'
+            res.srcDirs = ['res']
+        }
+    }
+}
+
+dependencies {
+
+    testCompile dependencyJUnit
+}

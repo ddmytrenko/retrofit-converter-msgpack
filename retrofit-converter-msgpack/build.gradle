@@ -1,0 +1,63 @@
+def versionAndroidSupport = "23.1.1"
+def versionJUnit = "4.12"
+def versionKotlin = "0.14.451"
+def versionMsgPack = "0.6.12"
+def versionRetrofit = "2.0.0-beta2"
+
+ext {
+
+    versionBuildTools = "23.0.2"
+    versionCompileSdk = 23
+    versionMinSdk = 15
+    versionTargetSdk = 23
+
+    versionCODE = 1
+    versionNAME = "1.0.0"
+
+    namePackage = "org.ddmytrenko.android.retrofit.converter.msgpack"
+    namePackageSampleApp = "${namePackage}.sample"
+
+    dependencyAndroidSupportAppCompat = "com.android.support:appcompat-v7:${versionAndroidSupport}"
+    dependencyAndroidSupportDesign = "com.android.support:design:${versionAndroidSupport}"
+
+    dependencyJUnit = "junit:junit:${versionJUnit}"
+
+    dependencyKotlinAndroidExtensions = "org.jetbrains.kotlin:kotlin-android-extensions:${versionKotlin}"
+    dependencyKotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${versionKotlin}"
+
+    dependencyMsgPack = "org.msgpack:msgpack:${versionMsgPack}"
+
+    dependencyRetrofit = "com.squareup.retrofit:retrofit:${versionRetrofit}"
+}
+
+buildscript {
+
+    repositories {
+
+        mavenCentral()
+        mavenLocal()
+    }
+
+    dependencies {
+
+        def versionClassPathGradleTools = "1.3.0"
+        def versionClassPathKotlin = "0.14.451"
+
+        classpath "com.android.tools.build:gradle:${versionClassPathGradleTools}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versionClassPathKotlin}"
+    }
+}
+
+allprojects {
+
+    repositories {
+
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+task clean(type: Delete) {
+
+    delete rootProject.buildDir
+}
