@@ -37,5 +37,6 @@ dependencies {
 
     testCompile dependencyJUnit
 
+    compile dependencyMsgPack
     compile dependencyRetrofit
 }
