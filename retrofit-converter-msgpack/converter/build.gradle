@@ -36,4 +36,6 @@ android {
 dependencies {
 
     testCompile dependencyJUnit
+
+    compile dependencyRetrofit
 }
