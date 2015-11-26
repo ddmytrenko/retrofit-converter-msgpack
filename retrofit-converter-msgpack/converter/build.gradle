@@ -35,7 +35,9 @@ android {
 
 dependencies {
 
+    testCompile dependencyAssertJAndroid
     testCompile dependencyJUnit
+    testCompile dependencyOkHttpMockWebServer
 
     compile dependencyMsgPack
     compile dependencyRetrofit

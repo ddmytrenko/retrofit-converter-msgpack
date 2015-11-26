@@ -1,7 +1,9 @@
 def versionAndroidSupport = "23.1.1"
+def versionAssertJAndroid = "1.1.1"
 def versionJUnit = "4.12"
 def versionKotlin = "0.14.451"
 def versionMsgPack = "0.6.12"
+def versionOkHttpMockWebServer = "2.6.0"
 def versionRetrofit = "2.0.0-beta2"
 
 ext {
@@ -40,12 +42,16 @@ ext {
     dependencyAndroidSupportAppCompat = "com.android.support:appcompat-v7:${versionAndroidSupport}"
     dependencyAndroidSupportDesign = "com.android.support:design:${versionAndroidSupport}"
 
+    dependencyAssertJAndroid = "com.squareup.assertj:assertj-android:${versionAssertJAndroid}"
+
     dependencyJUnit = "junit:junit:${versionJUnit}"
 
     dependencyKotlinAndroidExtensions = "org.jetbrains.kotlin:kotlin-android-extensions:${versionKotlin}"
     dependencyKotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${versionKotlin}"
 
     dependencyMsgPack = "org.msgpack:msgpack:${versionMsgPack}"
+
+    dependencyOkHttpMockWebServer = "com.squareup.okhttp:mockwebserver:${versionOkHttpMockWebServer}"
 
     dependencyRetrofit = "com.squareup.retrofit:retrofit:${versionRetrofit}"
 }
