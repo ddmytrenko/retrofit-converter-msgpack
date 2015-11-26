@@ -10,13 +10,13 @@ dependency management tools.
 
 ### Gradle
 
-```
+```groovy
     compile "org.ddmytrenko.android:retrofit-converter-msgpack:2.6.12-beta2"
 ```
 
 ### Maven
 
-```
+```xml
     <dependency>
         <groupId>org.ddmytrenko.android</groupId>
         <artifactId>retrofit-converter-msgpack</artifactId>
