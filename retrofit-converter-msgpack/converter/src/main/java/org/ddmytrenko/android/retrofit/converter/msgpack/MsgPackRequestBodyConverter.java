@@ -23,8 +23,12 @@
 
 package org.ddmytrenko.android.retrofit.converter.msgpack;
 
+import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.RequestBody;
 
+import org.msgpack.MessagePack;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import retrofit.Converter;
@@ -34,9 +38,19 @@ import retrofit.Converter;
  */
 public class MsgPackRequestBodyConverter<T> implements Converter<T, RequestBody> {
 
+    private static final String MSGPACK_MIME_TYPE = "application/x-msgpack";
+    private static final MediaType MEDIA_TYPE = MediaType.parse(MSGPACK_MIME_TYPE);
+
+    private final MessagePack messagePack;
+
+    public MsgPackRequestBodyConverter(final MessagePack messagePack) {
+        this.messagePack = messagePack;
+    }
+
     @Override
     public RequestBody convert(final T value) throws IOException {
-        // TODO !!!
-        return null;
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        messagePack.createPacker(out).write(value);
+        return RequestBody.create(MEDIA_TYPE, out.toByteArray());
     }
 }

@@ -25,7 +25,10 @@ package org.ddmytrenko.android.retrofit.converter.msgpack;
 
 import com.squareup.okhttp.ResponseBody;
 
+import org.msgpack.MessagePack;
+
 import java.io.IOException;
+import java.io.InputStream;
 
 import retrofit.Converter;
 
@@ -34,9 +37,17 @@ import retrofit.Converter;
  */
 public class MsgPackResponseBodyConverter<T> implements Converter<ResponseBody, T> {
 
+    private final MessagePack messagePack;
+    private final Class<T> valueClass;
+
+    public MsgPackResponseBodyConverter(final MessagePack messagePack, final Class<T> valueClass) {
+        this.messagePack = messagePack;
+        this.valueClass = valueClass;
+    }
+
     @Override
     public T convert(final ResponseBody value) throws IOException {
-        // TODO !!!
-        return null;
+        final InputStream in = value.byteStream();
+        return messagePack.createUnpacker(in).read(valueClass);
     }
 }

@@ -26,6 +26,8 @@ package org.ddmytrenko.android.retrofit.converter.msgpack;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.ResponseBody;
 
+import org.msgpack.MessagePack;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
@@ -38,25 +40,35 @@ import retrofit.Converter.Factory;
 public final class MsgPackConverterFactory extends Factory {
 
     public static MsgPackConverterFactory create() {
-        return new MsgPackConverterFactory();
+        return create(new MessagePack());
     }
 
-    private MsgPackConverterFactory() {
+    public static MsgPackConverterFactory create(final MessagePack messagePack) {
+        return new MsgPackConverterFactory(messagePack);
+    }
+
+    private final MessagePack messagePack;
+
+    private MsgPackConverterFactory(final MessagePack messagePack) {
+        this.messagePack = messagePack;
     }
 
     @Override
     public Converter<?, RequestBody> toRequestBody(final Type type,
                                                    final Annotation[] annotations) {
 
-        // TODO !!!
-        return null;
+        return new MsgPackRequestBodyConverter<>(messagePack);
     }
 
     @Override
     public Converter<ResponseBody, ?> fromResponseBody(final Type type,
                                                        final Annotation[] annotations) {
 
-        // TODO !!!
-        return null;
+        if (!(type instanceof Class<?>)) {
+            return null;
+        }
+
+        final Class<?> valueClass = (Class<?>) type;
+        return new MsgPackResponseBodyConverter<>(messagePack, valueClass);
     }
 }
