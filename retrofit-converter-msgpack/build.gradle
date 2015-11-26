@@ -11,8 +11,28 @@ ext {
     versionMinSdk = 15
     versionTargetSdk = 23
 
+    /**
+     * Versioning is easy. Means additive:
+     *
+     * Example:
+     *
+     *     converter - 0.0.0
+     *     retrofit  - 2.0.0-beta2
+     *     msgpack   - 0.6.12
+     *
+     * Than:
+     *
+     *     version   = 2.6.12-beta2
+     *
+     * The same for:
+     *
+     *     converter - 0.0.0-beta2
+     *     retrofit  - 2.0.0-beta2      =>    version = 2.6.12-beta5
+     *     msgpack   - 0.6.12-beta1
+     */
+
     versionCODE = 1
-    versionNAME = "1.0.0"
+    versionNAME = "2.6.12-beta2"
 
     namePackage = "org.ddmytrenko.android.retrofit.converter.msgpack"
     namePackageSampleApp = "${namePackage}.sample"
