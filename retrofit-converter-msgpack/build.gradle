@@ -3,6 +3,7 @@ ext {
     dependencyAndroidSupportAppCompat = "com.android.support:appcompat-v7:$VERSION_ANDROID_SUPPORT"
     dependencyAndroidSupportDesign = "com.android.support:design:$VERSION_ANDROID_SUPPORT"
     dependencyAssertJAndroid = "com.squareup.assertj:assertj-android:$VERSION_ASSERTJ_ANDROID"
+    dependencyAssertJCore = "org.assertj:assertj-core:$VERSION_ASSERTJ_CORE"
     dependencyJUnit = "junit:junit:$VERSION_JUNIT"
     dependencyKotlinAndroidExtensions = "org.jetbrains.kotlin:kotlin-android-extensions:$VERSION_KOTLIN"
     dependencyKotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:$VERSION_KOTLIN"
@@ -17,11 +18,13 @@ buildscript {
 
         mavenCentral()
         mavenLocal()
+        jcenter()
     }
 
     dependencies {
 
         classpath "com.android.tools.build:gradle:$VERSION_GRADLE_TOOLS"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$VERSION_GRADLE_BINTRAY_PLUGIN"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$VERSION_KOTLIN"
     }
 }
@@ -35,6 +38,7 @@ allprojects {
 
         mavenCentral()
         mavenLocal()
+        jcenter()
     }
 }
 

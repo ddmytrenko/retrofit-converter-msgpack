@@ -1,50 +1,112 @@
-apply plugin: 'com.android.library'
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
 
-android {
-
-    compileSdkVersion Integer.parseInt(project.VERSION_ANDROID_COMPILE_SDK)
-    buildToolsVersion project.VERSION_ANDROID_BUILD_TOOLS
-
-    defaultConfig {
-
-        minSdkVersion Integer.parseInt(project.VERSION_ANDROID_MIN_SDK)
-        targetSdkVersion Integer.parseInt(project.VERSION_ANDROID_TARGET_SDK)
-
-        versionCode Integer.parseInt(project.VERSION_CODE)
-        versionName project.VERSION_NAME
-    }
-
-    buildTypes {
-
-        release {
-
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    sourceSets {
-
-        main {
-
-            manifest.srcFile 'manifest/AndroidManifest.xml'
-            res.srcDirs = ['res']
-        }
-    }
-
-    compileOptions {
-
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
-    }
-}
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
 
 dependencies {
 
-    testCompile dependencyAssertJAndroid
+    testCompile dependencyAssertJCore
     testCompile dependencyJUnit
     testCompile dependencyOkHttpMockWebServer
 
     compile dependencyMsgPack
     compile dependencyRetrofit
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier 'javadoc'
+    from javadoc.destinationDir
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+publishing {
+
+    publications {
+
+        converter(MavenPublication) {
+            artifactId ARTIFACT
+
+            from components.java
+
+            artifact javadocJar
+            artifact sourcesJar
+
+            pom.withXml {
+                asNode().children().last() + {
+
+                    resolveStrategy = Closure.DELEGATE_FIRST
+
+                    name POM_NAME
+                    description POM_DESCRIPTION
+
+                    url POM_URL
+
+                    scm {
+                        url POM_SCM_URL
+                        connection POM_SCM_CONNECTION
+                        developerConnection POM_SCM_DEV_CONNECTION
+                    }
+
+                    licenses {
+                        license {
+                            name POM_LICENSE_NAME
+                            url POM_LICENSE_URL
+                            distribution POM_LICENSE_DIST
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id POM_DEVELOPER_ID
+                            name POM_DEVELOPER_NAME
+                            email POM_DEVELOPER_EMAIL
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+bintray {
+
+    user = System.getenv("BINTRAY_USERNAME")
+    key = System.getenv("BINTRAY_APIKEY")
+
+    publications = ['converter']
+
+    dryRun = false
+    publish = true
+
+    pkg {
+
+        repo = BINTRAY_REPO
+        name = BINTRAY_NAME
+        desc = BINTRAY_DESC
+
+        websiteUrl = BINTRAY_WEBSITE_URL
+        issueTrackerUrl = BINTRAY_ISSUE_TRACKER_URL
+        vcsUrl = BINTRAY_VCS_URL
+
+        licenses = [BINTRAY_LICENSE]
+        labels = [
+                BINTRAY_LABEL_ANDROID,
+                BINTRAY_LABEL_CONVERTER,
+                BINTRAY_LABEL_JAVA,
+                BINTRAY_LABEL_MSGPACK,
+                BINTRAY_LABEL_RETROFIT
+        ]
+
+        publicDownloadNumbers = true
+    }
 }
