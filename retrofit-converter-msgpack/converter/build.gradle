@@ -2,16 +2,16 @@ apply plugin: 'com.android.library'
 
 android {
 
-    compileSdkVersion versionCompileSdk
-    buildToolsVersion versionBuildTools
+    compileSdkVersion Integer.parseInt(project.VERSION_ANDROID_COMPILE_SDK)
+    buildToolsVersion project.VERSION_ANDROID_BUILD_TOOLS
 
     defaultConfig {
 
-        minSdkVersion versionMinSdk
-        targetSdkVersion versionTargetSdk
+        minSdkVersion Integer.parseInt(project.VERSION_ANDROID_MIN_SDK)
+        targetSdkVersion Integer.parseInt(project.VERSION_ANDROID_TARGET_SDK)
 
-        versionCode versionCODE
-        versionName versionNAME
+        versionCode Integer.parseInt(project.VERSION_CODE)
+        versionName project.VERSION_NAME
     }
 
     buildTypes {
