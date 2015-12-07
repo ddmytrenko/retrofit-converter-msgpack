@@ -5,8 +5,16 @@ format with a popular type-safe HTTP client [Retrofit](https://square.github.io/
 
 ## Download
 
-You can download latest [JAR]() manually or consider to use another Maven-compatible
-dependency management tools.
+You can download latest JAR manually or consider to use another Maven-compatible dependency
+management tools.
+
+<div style="text-align:center">
+    <a href="">
+        <img
+            src="https://raw.githubusercontent.com/ddmytrenko/retrofit-converter-msgpack/master/readme/images/button-download-jar.png"
+            />
+    </a>
+</div>
 
 ### Gradle
 
