@@ -42,6 +42,19 @@ management tools.
 
 This library requires at minimum Java 7 or Android SDK 15.
 
+## Tips
+
+### ProGuard
+
+In case you are using ProGuard you have to add the following rules for keeping Retrofit properly:
+
+```proguard
+    -dontwarn retrofit.**
+    -keep class retrofit.** { *; }
+    -keepattributes Signature
+    -keepattributes Exceptions
+```
+
 ## Changelog
 
 #### 2.6.12-beta2
