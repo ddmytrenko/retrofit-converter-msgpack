@@ -5,7 +5,7 @@ format with a popular type-safe HTTP client [Retrofit](https://square.github.io/
 
 ## Download
 
-You can download latest [AAR]() or [JAR]() manually or consider to use another Maven-compatible
+You can download latest [JAR]() manually or consider to use another Maven-compatible
 dependency management tools.
 
 ### Gradle
