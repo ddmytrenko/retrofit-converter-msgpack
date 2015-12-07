@@ -10,6 +10,14 @@ dependency management tools.
 
 ### Gradle
 
+***NOTE***: Add JCenter repository first:
+
+```groovy
+    repositories {
+        jcenter()
+    }
+```
+
 ```groovy
     compile "org.ddmytrenko.android:retrofit-converter-msgpack:2.6.12-beta2"
 ```
