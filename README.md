@@ -27,14 +27,14 @@ management tools.
 ```
 
 ```groovy
-    compile "org.ddmytrenko.android:retrofit-converter-msgpack:2.6.12-beta2"
+    compile "org.bitbucket.ddmytrenko.android:retrofit-converter-msgpack:2.6.12-beta2"
 ```
 
 ### Maven
 
 ```xml
     <dependency>
-        <groupId>org.ddmytrenko.android</groupId>
+        <groupId>org.bitbucket.ddmytrenko.android</groupId>
         <artifactId>retrofit-converter-msgpack</artifactId>
         <version>2.6.12-beta2</version>
     </dependency>

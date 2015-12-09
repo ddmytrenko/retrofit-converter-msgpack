@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
 
-        applicationId "org.ddmytrenko.android.retrofit.converter.msgpack.sample"
+        applicationId "org.bitbucket.ddmytrenko.android.retrofit.converter.msgpack.sample"
 
         minSdkVersion Integer.parseInt(project.VERSION_ANDROID_MIN_SDK)
         targetSdkVersion Integer.parseInt(project.VERSION_ANDROID_TARGET_SDK)
