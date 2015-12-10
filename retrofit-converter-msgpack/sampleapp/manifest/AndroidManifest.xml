@@ -2,7 +2,7 @@
 
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.bitbucket.ddmytrenko.android.retrofit.converter.msgpack.sample" >
+    package="org.bitbucket.ddmytrenko.android.retrofit.converter.msgpack.sample.app" >
 
     <application />
 

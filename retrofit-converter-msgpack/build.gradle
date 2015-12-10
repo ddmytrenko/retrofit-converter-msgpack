@@ -4,6 +4,7 @@ ext {
     dependencyAndroidSupportDesign = "com.android.support:design:$VERSION_ANDROID_SUPPORT"
     dependencyAssertJAndroid = "com.squareup.assertj:assertj-android:$VERSION_ASSERTJ_ANDROID"
     dependencyAssertJCore = "org.assertj:assertj-core:$VERSION_ASSERTJ_CORE"
+    dependencyDropwizardCore = "io.dropwizard:dropwizard-core:$VERSION_DROPWIZARD"
     dependencyJUnit = "junit:junit:$VERSION_JUNIT"
     dependencyKotlinAndroidExtensions = "org.jetbrains.kotlin:kotlin-android-extensions:$VERSION_KOTLIN"
     dependencyKotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:$VERSION_KOTLIN"

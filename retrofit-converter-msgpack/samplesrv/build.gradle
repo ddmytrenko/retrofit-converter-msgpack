@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+mainClassName = 'org.bitbucket.ddmytrenko.android.retrofit.converter.msgpack.sample.srv.SampleService'
+
+dependencies {
+
+    testCompile dependencyJUnit
+
+    compile project(':converter')
+
+    compile dependencyDropwizardCore
+}
+
+run {
+    args "server", "${project.projectDir}/src/dist/config/sampleservice.yml"
+}
