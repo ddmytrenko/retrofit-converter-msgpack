@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
@@ -80,8 +82,8 @@ publishing {
 
 bintray {
 
-    user = System.getenv("BINTRAY_USERNAME")
-    key = System.getenv("BINTRAY_APIKEY")
+    user = property('bintrayUsername')
+    key = property('bintrayApiKey')
 
     publications = ['converter']
 
@@ -108,5 +110,24 @@ bintray {
         ]
 
         publicDownloadNumbers = true
+
+        version {
+
+            name = VERSION_NAME
+            desc = BINTRAY_DESC
+
+            // Considering this issue:
+            // https://github.com/ametiste-oss/ametiste-bintray-gradle/issues/1
+            // We will use ISO date format
+            def timeZone = TimeZone.getTimeZone("UTC");
+            def dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZ");
+            dateFormat.setTimeZone(timeZone);
+            released = dateFormat.format(new Date());
+
+            gpg {
+                sign = true
+                passphrase = property('gpgPassphrase')
+            }
+        }
     }
 }
