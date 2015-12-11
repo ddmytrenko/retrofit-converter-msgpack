@@ -9,7 +9,7 @@ You can download latest JAR manually or consider to use another Maven-compatible
 management tools.
 
 <div style="text-align:center">
-    <a href="">
+    <a href="https://bintray.com/artifact/download/ddmytrenko/ddmytrenko-maven/org/bitbucket/ddmytrenko/android/retrofit-converter-msgpack/2.6.12-beta2/retrofit-converter-msgpack-2.6.12-beta2.jar">
         <img
             src="https://raw.githubusercontent.com/ddmytrenko/retrofit-converter-msgpack/master/readme/images/button-download-jar.png"
             />
