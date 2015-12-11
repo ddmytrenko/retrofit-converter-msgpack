@@ -16,6 +16,8 @@ management tools.
     </a>
 </div>
 
+***NOTE***: Bintray repository is available [here](https://bintray.com/ddmytrenko/ddmytrenko-maven/retrofit-converter-msgpack).
+
 ### Gradle
 
 ***NOTE***: Add JCenter repository first:
