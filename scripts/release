@@ -1,0 +1,83 @@
+#!/bin/bash
+
+version=$1
+
+# Determine script's folder
+var_source="${BASH_SOURCE[0]}"
+while [ -h "$var_source" ]; do
+    # Resolve $var_source until the file is no longer a symlink
+    var_dir="$( cd -P "$( dirname "$var_source" )" && pwd )"
+    var_source="$(readlink "$var_source")"
+    [[ $var_source != /* ]] && var_source="$var_dir/$var_source"
+    # if $var_source was a relative symlink, we need to resolve it relative to the path where the
+    # symlink file was located
+done
+var_dir="$( cd -P "$( dirname "$var_source" )" && pwd )"
+
+# Go to sources directory
+cd "$var_dir/../retrofit-converter-msgpack/converter"
+
+# Determining currently checked out branch
+current_branch="$(git symbolic-ref -q HEAD)"
+current_branch="${current_branch##refs/heads/}"
+current_branch="${current_branch:-HEAD}"
+
+echo ""
+
+# Checking for the master branch
+if [ ! "$current_branch" == "master" ]; then
+    echo ""
+    echo "ERROR:"
+    echo "\tPlease check out master branch!"
+    exit 1
+fi
+
+echo ""
+
+# Bumping version
+echo "Bumping release version to $version"
+properties="../gradle.properties"
+version_code="$var_dir/../VERSION_CODE"
+temp="$properties.tmp"
+typeset -i old_code=$(cat "$version_code")
+new_code=$((old_code+1))
+echo $new_code > $version_code
+sed -e "s|VERSION_CODE=.*|VERSION_CODE=${new_code}|" $properties > $temp && cp $temp $properties
+sed -e "s|VERSION_NAME=.*|VERSION_NAME=${version}|" $properties > $temp && cp $temp $properties
+
+echo ""
+
+# Preparing release tag
+echo "Committing changes and adding release tag..."
+git add $properties
+git add $version_code
+git commit -m "[MASTER] Version bumped to $version."
+git tag -a "v$version" -m "Release: $version"
+
+echo ""
+
+# Push
+echo "Pushing changes to the Git repo..."
+git push origin master
+git push origin "v$version"
+
+echo ""
+
+# Asking for credentials
+read -p "Enter Bintray username: " username
+read -p "Enter Bintray API Key: " apikey
+read -s -p "Enter GPG passphrase: " gpgpass
+
+echo ""
+echo ""
+
+# Run Gradle script
+echo "Building..."
+echo ""
+../gradlew -PbintrayUsername=$username -PbintrayApiKey=$apikey -PgpgPassphrase=$gpgpass clean build bintrayUpload
+
+echo ""
+
+# Notes
+echo "REMINDERS:"
+echo "\t1. Do not forget to update change log!"
