@@ -103,8 +103,13 @@ publishing {
 
 bintray {
 
-    user = property('bintrayUsername')
-    key = property('bintrayApiKey')
+    try {
+        user = property('bintrayUsername')
+        key = property('bintrayApiKey')
+    } catch (Throwable ignored) {
+        user = ""
+        key = ""
+    }
 
     publications = ['converter']
 
@@ -147,7 +152,12 @@ bintray {
 
             gpg {
                 sign = true
-                passphrase = property('gpgPassphrase')
+
+                try {
+                    passphrase = property('gpgPassphrase')
+                } catch (Throwable ignored) {
+                    passphrase = ""
+                }
             }
         }
     }
