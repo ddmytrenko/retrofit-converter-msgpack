@@ -1,6 +1,4 @@
 /**
- * LICENSE
- *
  * The MIT License (MIT)
  *
  * Copyright (c) 2015 Dmytro Dmytrenko, <dmytrenko.d@gmail.com>
